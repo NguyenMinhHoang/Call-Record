@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Record Call</string>
+    <string name="instruction">Demonstrate how to record a call.\nIf you run on android M or later please allow some permission to get it.</string>
 </resources>
