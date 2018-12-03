@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void checkPermissions() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE}, REQUEST_CODE_PERMISSION_RECORD_AUDIO);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_CONTACTS}, REQUEST_CODE_PERMISSION_RECORD_AUDIO);
     }
 
     public static boolean isPermissionGranted(String[] requestPermissions, int[] grantResults) {

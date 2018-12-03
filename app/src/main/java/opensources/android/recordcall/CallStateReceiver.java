@@ -11,7 +11,7 @@ import android.util.Log;
 /**
  * The receiver receive broadcast from call system when have incoming call, outgoing call...whenever have 'call state' change
  */
-public class CallStateReceiver extends BroadcastReceiver{
+public class CallStateReceiver extends BroadcastReceiver {
     private static final String TAG = CallStateReceiver.class.getSimpleName();
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -37,15 +37,19 @@ public class CallStateReceiver extends BroadcastReceiver{
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
                     Log.d(TAG, "onCallStateChanged ... CALL_STATE_IDLE");
-                    Boolean stopped = context.stopService(new Intent(context, CallRecordService.class));
+                    Intent savedIntent = new Intent(context, CallRecordService.class);
+                    savedIntent.putExtra("action", 2);
+                    context.startService(savedIntent);
+                    //Boolean stopped = context.stopService(new Intent(context, CallRecordService.class));
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
                     Log.d(TAG, "onCallStateChanged ... CALL_STATE_RINGING");
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     Log.d(TAG, "onCallStateChanged ... CALL_STATE_OFFHOOK");
-                    Intent callIntent = new Intent(context, CallRecordService.class);
-                    context.startService(callIntent);
+                    Intent recordIntent = new Intent(context, CallRecordService.class);
+                    recordIntent.putExtra("action", 1);
+                    context.startService(recordIntent);
                     break;
             }
         }
